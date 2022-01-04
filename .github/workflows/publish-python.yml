@@ -4,6 +4,8 @@ on:
   push:
     branch:
       - 'main'
+    tag:
+      - 'v*'
 
 jobs:
   publish-image:
