@@ -2,8 +2,8 @@ name: Publish Python Package
 
 on:
   push:
-    branch:
-      - 'main'
+    tags:
+      - 'v*'
 
 jobs:
   publish-image:
@@ -19,4 +19,4 @@ jobs:
         run: python3 setup.py sdist bdist_wheel
 
       - name: Publish project
-        run: echo test test | python3 -m twine upload dist/*
+        run: python3 -m twine -u test -p test --non-interactive upload dist/*
