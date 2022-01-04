@@ -17,12 +17,14 @@ jobs:
       - name: Install dependencies
         run: python3 -m pip install setuptools wheel twine
 
-      - name: Get the tag version
-        id: get_version
-        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+      - name: Set tag version
+        id: tag_version
+        run: |
+          tag=$(echo $GITHUB_REF | cut -d / -f 3)
+          echo ::set-output name=version::${tag:1}
 
       - name: Display version
-        run: echo ${{ steps.get_version.outputs.VERSION }}
+        run: echo ${{ steps.tag_version.outputs.VERSION }}
 
       - name: Build project
         run: python3 setup.py sdist bdist_wheel
