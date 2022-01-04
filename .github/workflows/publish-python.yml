@@ -24,7 +24,7 @@ jobs:
           echo ::set-output name=version::${tag:1}
 
       - name: Display version
-        run: echo ${{ steps.tag_version.outputs.VERSION }}
+        run: echo ${{ steps.tag_version.outputs.version }}
 
       - name: Build project
         run: python3 setup.py sdist bdist_wheel
